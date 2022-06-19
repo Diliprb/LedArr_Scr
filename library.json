@@ -1,0 +1,24 @@
+{
+    "name": "LedArr",
+    "keywords": "Led Array,WS8211,16x16 Leds, Led Array Screen",
+    "description": "Arduino library for handelling a 16x16 WS2811 Led Array as a Screen",
+    "authors":
+    [
+      {
+        "name": "Dileep R. Bhavnani",
+        "email": "diliprb@gmail.com",
+        "maintainer": true
+      }
+    ],
+    "repository":
+    {
+      "type": "public",
+      "url": "https://github.com/Diliprb/LedArr_Scr"
+    },
+    "version": "0.0.1",
+    "license": "GNU",
+    "frameworks": "arduino",
+    "platforms": "*",
+    "headers": "LedArray.h"
+  }
+  
