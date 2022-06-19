@@ -216,6 +216,21 @@ uint8_t  LedArr:: SetLedCol(const uint8_t X,const uint8_t Y, const uint8_t value
     }
     return value;
 }
+
+// function that will set a position of our memoey array with a specif color
+uint8_t  LedArr:: SetLedColI(uint8_t pos, const uint8_t value)
+{
+    uint16_t mpos = pos * _bits;
+    uint32_t mask = 1UL;
+    for (uint8_t i = 0; i < _bits; i++)
+    {
+        uint8_t v = (value & mask) > 0 ? 1 : 0;
+        _bitset(mpos + i, v);
+        mask <<= 1;
+    }
+    return value;
+}
+
 //**********************//
 // String definitions  *//
 //**********************//
@@ -238,7 +253,7 @@ bool LedArr:: GetChrPix(char lt, uint8_t x, uint8_t y)
 }
 // will allow to display any 1 character of from the line definition onto the memory array
 // very usefull for single sprite animations (scores and such) mindyou only 9 characters can be displayed (if not ovrlayed)
-void LedArr:: DisplayChar(char chr, int8_t x, int8_t y, uint8_t col)
+void LedArr:: DisplayChar(char chr, int8_t x, int8_t y, uint8_t col, bool sbbkgrnd)
 {
   if ((x > -5) && (y > -5))
   {
@@ -251,13 +266,21 @@ void LedArr:: DisplayChar(char chr, int8_t x, int8_t y, uint8_t col)
                       { 
                         SetLedCol((x+lx),(y+ly),col);                      
                       }
-                     else {SetLedCol((x+lx),(y+ly),0);}
+                     else {
+                            if (sbbkgrnd)
+                              {
+                                 SetLedCol((x+lx),(y+ly),0);
+                              }
+                          }
                    }
                 }
            }     
         }
     }
 }
+// overload 
+void LedArr:: DisplayChar(char chr, int8_t x, int8_t y, uint8_t col)
+ { DisplayChar(chr, x, y, col, true);}
 
 //Will display 1x5 bit line from the current message. for String animation purposes.
 void LedArr :: DisplaySnglLine(LedStrStruc  mls)
@@ -357,6 +380,3 @@ void LedArr :: DisplayString()
       }
     }
   }
-
-
- 
