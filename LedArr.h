@@ -67,7 +67,7 @@ class LedArr{
  int _dataPin;
   
     // Constructor
-  LedArr( int dP);
+  LedArr( int dP); // not working dP is not geting the correct value on cpp
   LedArr(void);
   
   // Screen definitions
@@ -77,9 +77,11 @@ class LedArr{
   uint8_t GetLedCol(const uint8_t X,const uint8_t Y);  //Will return the pixel color in the memmory array
   uint8_t GetLedColI(const uint8_t idx);               // same as above but directly by pixel index
   uint8_t SetLedCol(const uint8_t X,const uint8_t Y, const uint8_t value); // will set a collor on the bitarray 
+  uint8_t SetLedColI(const uint8_t pos, const uint8_t value); // will set a collor on the bitarray 
   struct mRGB GetColors(uint8_t Col);    // funcion that will translate the 0-15 bit into a RGB struct
   void RefreshLedArr(void);      // Will force the controller to show the memoryarray color configuration
-  void DisplayChar(char chr, int8_t x, int8_t y, uint8_t col); //Sets a character if previously defined on the memory array
+  void DisplayChar(char chr, int8_t x, int8_t y, uint8_t col); //Sets a character if previously defined on the memory array , solid black bkgrnd
+  void DisplayChar(char chr, int8_t x, int8_t y, uint8_t col, bool sbbkgrnd); //Sets a character if previously defined on the memory array solid_back_ground?
   void LoadString(int idx, String mstr,int8_t mcol);    //Allows the user to Set 0 or 1 predefined dispalayable Strings param idx 0-1, mstr : my string, mcol color
   void SetScrollSpeed(int idx,int nspd);  //Allow the user to change the default speed 80%
   void DisplayString();        // if called in a loop will make the effect of animated string so it can be read
